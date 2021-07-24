@@ -75,18 +75,38 @@ WSGI_APPLICATION = 'ProtfolioWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-        'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-     }
-}
+#DATABASES = {
+   #     'default': {
+ #      'ENGINE': 'django.db.backends.sqlite3',
+ #       'NAME': BASE_DIR / 'db.sqlite3',
+ #    }
+#}
 #DATABASES = {
  #   'default': {
   #      'ENGINE': 'djongo',
  #       'NAME': 'KAZISHUVODB',
 #    }
 #}
+
+DATABASES = {
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'dbcm6jbk4d40qm',
+
+        'USER': 'whlpunyjcctpot',
+
+        'PASSWORD': 'a178ddd72d5eb207436e42d47f23729286d6ca7df953bc944e9b68cb03959444',
+
+        'HOST': 'ec2-54-145-102-149.compute-1.amazonaws.com',
+
+        'PORT': '5432',
+
+    }
+
+}
 
 
 # Password validation
