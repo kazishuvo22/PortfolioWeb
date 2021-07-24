@@ -1,1 +1,1 @@
-web: gunicorn kazishuvo:app
+web: gunicorn protfolio:app
