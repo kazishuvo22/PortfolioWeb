@@ -1,1 +1,1 @@
-web: gunicorn protfolio:app
+web: gunicorn ProtfolioWeb.wsgi
