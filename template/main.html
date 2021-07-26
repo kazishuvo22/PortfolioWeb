@@ -63,8 +63,8 @@
           <li><a href="{% url 'home' %}" class="nav-link scrollto {%if 'home' in request.path %} active {% endif %}"><i class="bx bx-home"></i> <span>Home</span></a></li>
           <li><a href="{% url 'about' %}" class="nav-link scrollto {%if 'about' in request.path %} active {% endif %}"><i class="bx bx-user"></i> <span>About</span></a></li>
           <li><a href="{% url 'resume' %}" class="nav-link scrollto {%if 'resume' in request.path %} active {% endif %}"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Projects</span></a></li>
+          <li><a href="{% url 'control_panel' %}" class="nav-link scrollto"><i class="bx bx-server"></i> <span>cPanel</span></a></li>
           <li><a href="{% url 'contact' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
@@ -74,20 +74,19 @@
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
+<!--    <section class="breadcrumbs">-->
+<!--      <div class="container">-->
 
-        <div class="d-flex justify-content-between align-items-center">
-          <h2></h2>
-          <!-- <h2 class="text-center">Welcome to Kamruzzman's Portfolio Website</h2> -->
-          <!-- <ol>
-            <li><a href="">Home</a></li>
-            <li>Inner Page</li>
-          </ol> -->
-        </div>
+<!--        <div>-->
+<!--          &lt;!&ndash; <h2 class="text-center">welcome to kamruzzman's portfolio website</h2> &ndash;&gt;-->
+<!--          &lt;!&ndash; <ol>-->
+<!--            <li><a href="">home</a></li>-->
+<!--            <li>inner page</li>-->
+<!--          </ol> &ndash;&gt;-->
+<!--        </div>-->
 
-      </div>
-    </section>
+<!--      </div>-->
+<!--    </section>-->
     {% block content %} {% endblock %}
     <!-- End Breadcrumbs -->
 
@@ -129,6 +128,7 @@
   <script src="{%static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{%static 'assets/vendor/typed.js/typed.min.js' %}"></script>
   <script src="{%static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
   <!-- Template Main JS File -->
