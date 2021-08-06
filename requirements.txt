@@ -2,3 +2,6 @@ Django==3.2.5
 psycopg2==2.9.1
 gunicorn
 django-heroku
+djongo
+psycopg2==2.9.1
+dj-database-url

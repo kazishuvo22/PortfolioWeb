@@ -1,0 +1,61 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "cNav.html" %}
+
+<table class="table caption-top">
+    <caption>List of Messages</caption>
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for msg in message_all %}
+    <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{msg.name}}</td>
+        <td>{{msg.email}}</td>
+        <td>{{msg.subject}}</td>
+        <td>
+            <div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop{{msg.id}}">
+                    Read
+                </button>
+                <a class="btn btn-danger btn-sm" role="button" href="{% url 'delete_message' msg.id %}">Delete</a>
+            </div>
+        </td>
+    </tr>
+    <!-- Scrollable modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop{{msg.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{msg.subject}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <a class="btn-secondary btn-sm" style="cursor:text;">{{msg.name}}</a>
+                    <a class="btn-warning btn-sm" style="cursor:text;">{{msg.email}}</a>
+                    <div>
+                        {{msg.message}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
