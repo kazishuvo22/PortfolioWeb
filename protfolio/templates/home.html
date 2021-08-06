@@ -1,9 +1,38 @@
 {% extends "main.html" %}
-{% block content %} 
+{% block content %}
+{% if messages %}
+            <ul class="messages" id="mydiv">
+                {% for message in messages %}
+                <div
+                        {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                </div>
+                {% endfor %}
+            </ul>
+            {% endif %}
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
       <h1>Kamruzzman Shuvo</h1>
       <p>I'm <span class="typed" data-typed-items="Programmer, Developer, Researcher"></span></p>
     </div>
   </section>
+
+<script>
+    setTimeout(function() {
+    $('#mydiv').fadeOut('fast');
+}, 5000); //
+
+
+
+
+
+
+</script>
+<style>
+    #mydiv{
+    background: #00ba44;
+    color: #fff;
+    text-align: center;
+}
+
+</style>
 {% endblock %}

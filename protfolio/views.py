@@ -1,9 +1,11 @@
 from datetime import datetime
 from django.contrib import messages
+from django.contrib.messages.storage import session
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from .forms import ContactForm
 from .models import Contact
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth import logout
 
 
 # Create your views here.
@@ -63,3 +65,9 @@ def delete_messages(request, mid):
     msg = Contact.objects.get(id=mid)
     msg.delete()
     return redirect('message_list')
+
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, "Successfully Logout")
+    return redirect('home')

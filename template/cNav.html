@@ -8,32 +8,36 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <li class="nav-item">
-                    <a class="nav-link {%if 'about' in request.path %} active {% endif %}" aria-current="page" href="#">Insert About</a>
+                    <a class="nav-link {%if 'about' in request.path %} active {% endif %}" aria-current="page" href="#">Insert
+                        About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {%if 'project' in request.path %} active {% endif %}" href="#">Insert Project</a>
                 </li>
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"-->
-<!--                       data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                        Insert-->
-<!--                    </a>-->
-<!--                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">-->
-<!--                        <li><a class="dropdown-item" href="#">About</a></li>-->
-<!--                        <li><a class="dropdown-item" href="#">Project</a></li>-->
-<!--                        <li>-->
-<!--                            <hr class="dropdown-divider">-->
-<!--                        </li>-->
-<!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+
+                <!--                <li class="nav-item dropdown">-->
+                <!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"-->
+                <!--                       data-bs-toggle="dropdown" aria-expanded="false">-->
+                <!--                        Insert-->
+                <!--                    </a>-->
+                <!--                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">-->
+                <!--                        <li><a class="dropdown-item" href="#">About</a></li>-->
+                <!--                        <li><a class="dropdown-item" href="#">Project</a></li>-->
+                <!--                        <li>-->
+                <!--                            <hr class="dropdown-divider">-->
+                <!--                        </li>-->
+                <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                <!--                    </ul>-->
+                <!--                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link {%if 'message_list' in request.path %} active {% endif %}" href="{% url 'message_list' %}">Messages</a>
+                    <a class="nav-link {%if 'message_list' in request.path %} active {% endif %}"
+                       href="{% url 'message_list' %}">Messages</a>
                 </li>
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-success" type="submit">Search</button>&nbsp;&nbsp;
+                <a class="btn btn-danger" href="{% url 'logout' %} ">Logout</a>
             </form>
         </div>
     </div>
@@ -41,4 +45,6 @@
 <style>
     .navbar-toggler{
     padding: 0.25rem 3.75rem;
+
+
 </style>

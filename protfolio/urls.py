@@ -9,5 +9,6 @@ urlpatterns = [
     path('contact/', views.contact, name="contact"),
     path('control_panel/', views.control_panel, name="control_panel"),
     path('message_list/', views.messages_list, name="message_list"),
-    path('delete_message/<int:mid>/', views.delete_messages, name="delete_message")
+    path('delete_message/<int:mid>/', views.delete_messages, name="delete_message"),
+    path('logout/', views.logout_view, name="logout")
 ]
