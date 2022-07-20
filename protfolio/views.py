@@ -17,7 +17,7 @@ def index(request):
 def about(request):
     page = 'about'
     skills_all = []
-    skills_all_category = Skills.objects.all().values_list('skills_category_name', flat=True).order_by('created_at').distinct()
+    skills_all_category = Skills.objects.all().order_by('created_at').values_list('skills_category_name', flat=True).distinct()
     for skills_cate in skills_all_category:
         skills = Skills.objects.filter(skills_category_name=skills_cate).order_by('created_at')
         skills_all.append({
