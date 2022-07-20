@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+    <section id="about" class="about">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Education History</h2>
+            </div>
+            <div class="card shadow p-2">
+                <div class="card-body">
+                    <div class="timeline">
+                        {% for edu in edu_all %}
+                            <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="5">
+                                <div class="timeline-head px-4 pt-3">
+                                    <div class="h5">{{ edu.degree_full }} <span
+                                            class="text-muted h6">from {{ edu.institute_name }}</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-body px-4 pb-4">
+                                    <div class="text-muted text-small mb-3">{{ edu.start_date | date:"M Y" }}
+                                        - {{ edu.end_date | date:"M Y"  }}</div>
+                                    <div>
+                                        {% autoescape off %}
+                                            {{ edu.summery }}
+                                        {% endautoescape %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

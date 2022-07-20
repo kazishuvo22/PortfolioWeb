@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'control_panel' %}">Control Panel</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -7,30 +7,34 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                <li class="nav-item">
-                    <a class="nav-link {%if 'about' in request.path %} active {% endif %}" aria-current="page" href="#">Insert
-                        About</a>
+                <li class="nav-item dropdown">
+                    <a class="btn nav-link dropdown-toggle {% if 'admin/protfolio/about' in request.path %} active {% endif %}"
+                       href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bx bx-area bx-lg"></i> Admin Manage
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'admin:protfolio_about_changelist' %}">About</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'admin:protfolio_education_changelist' %}">Educations</a></li>
+                         <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'admin:protfolio_workexperience_changelist' %}">Work Experiences</a></li>
+                         <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'admin:protfolio_skills_changelist' %}">Professional Skills</a></li>
+                         <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'admin:protfolio_references_changelist' %}">References</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {%if 'project' in request.path %} active {% endif %}" href="#">Insert Project</a>
-                </li>
-
-                <!--                <li class="nav-item dropdown">-->
-                <!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"-->
-                <!--                       data-bs-toggle="dropdown" aria-expanded="false">-->
-                <!--                        Insert-->
-                <!--                    </a>-->
-                <!--                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">-->
-                <!--                        <li><a class="dropdown-item" href="#">About</a></li>-->
-                <!--                        <li><a class="dropdown-item" href="#">Project</a></li>-->
-                <!--                        <li>-->
-                <!--                            <hr class="dropdown-divider">-->
-                <!--                        </li>-->
-                <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-                <!--                    </ul>-->
-                <!--                </li>-->
-                <li class="nav-item">
-                    <a class="nav-link {%if 'message_list' in request.path %} active {% endif %}"
+                    <a class="nav-link {% if 'message_list' in request.path %} active {% endif %}"
                        href="{% url 'message_list' %}">Messages</a>
                 </li>
             </ul>
@@ -43,8 +47,11 @@
     </div>
 </nav>
 <style>
-    .navbar-toggler{
-    padding: 0.25rem 3.75rem;
+    .navbar-toggler {
+        padding: 0.25rem 3.75rem;
 
-
+    }
+    .dropdown-menu{
+        background: honeydew;
+    }
 </style>

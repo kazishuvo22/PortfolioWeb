@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.messages.storage import session
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from .forms import ContactForm
-from .models import Contact
+from .models import Contact, Skills, Education
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import logout
 
@@ -16,7 +16,19 @@ def index(request):
 
 def about(request):
     page = 'about'
-    return render(request, page + ".html")
+    skills_all = []
+    skills_all_category = Skills.objects.all().values_list('skills_category_name', flat=True).distinct()
+    for skills_cate in skills_all_category:
+        skills = Skills.objects.filter(skills_category_name=skills_cate)
+        skills_all.append({
+            'category_name': skills_cate,
+            'skills': skills,
+            'skills_count': skills.count()
+        })
+    context = {
+        'skills_all': skills_all
+    }
+    return render(request, page + ".html", context)
 
 
 def resume(request):
@@ -71,3 +83,15 @@ def logout_view(request):
     logout(request)
     messages.success(request, "Successfully Logout")
     return redirect('home')
+
+
+def education(request):
+    edu_all = Education.objects.all().order_by('-created_at')
+    context = {
+        'edu_all': edu_all
+    }
+    return render(request, "education.html", context)
+
+
+def login(request):
+    return render(request, "Login.html")

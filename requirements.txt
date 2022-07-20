@@ -5,3 +5,6 @@ django-heroku
 djongo
 psycopg2==2.9.1
 dj-database-url
+django-cleanup~=6.0.0
+django-tinymce
+Pillow~=9.1.0

@@ -17,7 +17,6 @@ import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -29,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'protfolio'
+    'protfolio',
+    'django_cleanup.apps.CleanupConfig',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -72,44 +72,61 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ProtfolioWeb.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-   #     'default': {
- #      'ENGINE': 'django.db.backends.sqlite3',
- #       'NAME': BASE_DIR / 'db.sqlite3',
- #    }
-#}
-#DATABASES = {
+# DATABASES = {
+#     'default': {
+#      'ENGINE': 'django.db.backends.sqlite3',
+#       'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+# }
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'djongo',
 #        'NAME': 'KAZISHUVODB',
 #    }
-#}
+# }
 
 
+# DATABASES = {
+#
+#     'default': {
+#
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#
+#         'NAME': 'dbcm6jbk4d40qm',
+#
+#         'USER': 'whlpunyjcctpot',
+#
+#         'PASSWORD': 'a178ddd72d5eb207436e42d47f23729286d6ca7df953bc944e9b68cb03959444',
+#
+#         'HOST': 'ec2-54-145-102-149.compute-1.amazonaws.com',
+#
+#         'PORT': '5432',
+#
+#     }
+#
+# }
 DATABASES = {
 
     'default': {
 
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
 
-        'NAME': 'dbcm6jbk4d40qm',
+        'NAME': 'portfolio',
 
-        'USER': 'whlpunyjcctpot',
+        'USER': 'root',
 
-        'PASSWORD': 'a178ddd72d5eb207436e42d47f23729286d6ca7df953bc944e9b68cb03959444',
+        'PASSWORD': 'root',
 
-        'HOST': 'ec2-54-145-102-149.compute-1.amazonaws.com',
+        'HOST': 'localhost',
 
-        'PORT': '5432',
+        'PORT': '3306',
 
     }
 
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -129,7 +146,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -143,7 +159,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -154,7 +169,6 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'statics'),
 ]
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
