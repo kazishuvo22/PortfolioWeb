@@ -67,18 +67,22 @@
                 <li><a href="{% url 'about' %}"
                        class="nav-link scrollto {% if 'about' in request.path %} active {% endif %}"><i
                         class="bx bx-user"></i> <span>About</span></a></li>
-                <li><a href="{% url 'about' %}#skills"
-                       class="nav-link scrollto {% if 'skills' in request.path %} active {% endif %}"><i
-                        class="bx bx-code-alt"></i> <span>Professional Skills</span></a></li>
+                <li><a href="{% url 'work-experience' %}"
+                       class="nav-link scrollto {% if 'work-experience' in request.path %} active {% endif %}"><i
+                        class="bx bxs-factory"></i> <span>Experiences</span></a></li>
                 <li><a href="{% url 'education' %}"
                        class="nav-link scrollto {% if 'education' in request.path %} active {% endif %}"><i
                         class="bx bxs-graduation"></i> <span>Education</span></a></li>
+                <li><a href="{% url 'about' %}#skills"
+                       class="nav-link scrollto {% if 'skills' in request.path %} active {% endif %}"><i
+                        class="bx bx-code-alt"></i> <span>Skills</span></a></li>
                 <li><a href="{% url 'resume' %}"
                        class="nav-link scrollto {% if 'resume' in request.path %} active {% endif %}"><i
                         class="bx bx-file-blank"></i> <span>Resume</span></a></li>
                 <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i>
                     <span>Projects</span></a></li>
-                <li><a href="{% url 'login' %}" class="nav-link scrollto"><i class="bx bx-server"></i> <span>LogIn</span></a>
+                <li><a href="{% url 'admin:index' %}" class="nav-link scrollto"><i class="bx bx-server"></i>
+                    <span>LogIn</span></a>
                 </li>
                 <li><a href="{% url 'contact' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i>
                     <span>Contact</span></a></li>
@@ -120,14 +124,14 @@
 <footer id="footer">
     <div class="container">
         <div class="copyright">
-            &copy; Copyright <strong><span>2021</span></strong>
+            &copy; Copyright <strong><span>2022</span></strong>
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-            Developed by <a href="#">Kamruzzman Shuvo</a>
+            Developed by <a href="https://www.facebook.com/kshuvo22">Kamruzzman Shuvo</a>
         </div>
     </div>
 </footer><!-- End  Footer -->

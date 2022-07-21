@@ -1,11 +1,13 @@
 from datetime import datetime
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.messages.storage import session
 from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.urls import reverse_lazy, reverse
+
 from .forms import ContactForm
-from .models import Contact, Skills, Education
+from .models import Contact, Skills, Education, WorkExperience
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 
 
 # Create your views here.
@@ -17,7 +19,8 @@ def index(request):
 def about(request):
     page = 'about'
     skills_all = []
-    skills_all_category = Skills.objects.all().values_list('skills_category_name', flat=True).distinct()
+    skills_all_category = Skills.objects.all().values_list('skills_category_name',
+                                                           flat=True).distinct()
     for skills_cate in skills_all_category:
         skills = Skills.objects.filter(skills_category_name=skills_cate)
         skills_all.append({
@@ -93,5 +96,28 @@ def education(request):
     return render(request, "education.html", context)
 
 
-def login(request):
-    return render(request, "Login.html")
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_staff:
+                login(request, user)
+                return HttpResponseRedirect(
+                    reverse('admin:index'))
+            else:
+                return redirect('home')
+        # Redirect to a success page.
+        else:
+            messages.warning(request, "Wrong Credentials! Please use correct username and password.")
+    else:
+        return render(request, "Login.html")
+
+
+def workexperience(request):
+    exp_all = WorkExperience.objects.all().order_by('-created_at')
+    context = {
+        'exp_all': exp_all
+    }
+    return render(request, "workexperience.html", context)

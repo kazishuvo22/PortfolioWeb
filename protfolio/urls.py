@@ -12,5 +12,5 @@ urlpatterns = [
     path('delete_message/<int:mid>/', views.delete_messages, name="delete_message"),
     path('logout/', views.logout_view, name="logout"),
     path('education/', views.education, name="education"),
-    path('login/', views.login, name="login"),
+    path('work-experience/', views.workexperience, name="work-experience"),
 ]
