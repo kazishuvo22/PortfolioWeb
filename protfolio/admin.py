@@ -4,7 +4,7 @@ from django.contrib import admin, messages
 from django.utils.html import format_html
 from django.utils.translation import ngettext
 
-from protfolio.models import General, About, Skills, Education, Project, WorkExperience, References
+from protfolio.models import General, About, Skills, Education, Project, WorkExperience, References, Resume
 from protfolio.views import login, login_view
 
 admin.site.site_header = "Kamruzzman's Portfolio Administration"
@@ -70,3 +70,4 @@ admin.site.register(Education)
 admin.site.register(Project)
 admin.site.register(WorkExperience)
 admin.site.register(References)
+admin.site.register(Resume)

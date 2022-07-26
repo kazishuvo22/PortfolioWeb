@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kamruzzman Shuvo</title>
+    <title>{{ request.session.name }}</title>
     {% load static %}
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -46,15 +46,15 @@
 
         <div class="profile">
             <img src="{% static 'assets/img/profile-img.jpg' %}" alt="" class="img-fluid rounded-circle">
-            <h1 class="text-light"><a href="{% url 'home' %}">Kamruzzman Shuvo</a></h1>
+            <h1 class="text-light"><a href="{% url 'home' %}">{{ request.session.name }}</a></h1>
             <div class="social-links mt-3 text-center">
-                <a href="https://twitter.com/kazishuvo22/" target="_blank" class="twitter"><i
-                        class="bx bxl-twitter"></i></a>
-                <a href="https://www.facebook.com/kshuvo22/" target="_blank" class="facebook"><i
+                <a href="callto:{{ request.session.whatsapp_link }}" target="_blank" class="twitter"><i
+                        class="bx bxl-whatsapp"></i></a>
+                <a href="{{ request.session.facebook_link }}" target="_blank" class="facebook"><i
                         class="bx bxl-facebook"></i></a>
-                <a href="mailto:kazishuvo.cse@gmail.com" class="google-plus"><i class="bx bx-envelope"></i></a>
-                <a href="skype:live:kazi.shuvo_1?chat" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="https://www.linkedin.com/in/kamruzzman-shuvo-60ba30144/" target="_blank" class="linkedin"><i
+                <a href="mailto:{{ request.session.email }}" class="google-plus"><i class="bx bx-envelope"></i></a>
+                <a href="{{ request.session.skype_link }}" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="{{ request.session.linkedin_link }}" target="_blank" class="linkedin"><i
                         class="bx bxl-linkedin"></i></a>
             </div>
         </div>

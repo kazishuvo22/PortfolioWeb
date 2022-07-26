@@ -1,0 +1,79 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}">{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block nav-sidebar %}{% endblock %}
+
+{% block content %}
+    <style>
+        blink {
+            animation: blinker 2s linear infinite;
+            color: red;
+            font-family: sans-serif;
+            font-size: 30px;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .column {
+            float: left;
+            width: 48%;
+            padding: 10px;
+            height: auto;
+            margin-left: .5rem /* Should be removed. Only for demonstration */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <div style="background: #000000; margin-bottom: 2rem; padding: 5px; border: 5px solid #5dff58">
+        <div style="text-align: center;">
+            <img style="text-align: left;height: 6rem; margin-bottom: -30px;"
+                 src="{% static 'assets/img/hac2.gif' %}"><br>
+            <blink>-------------------------------</blink>
+            <br>
+            <span style="font-family: 'Perpetua Titling MT','cursive'; font-size: 2rem; text-align: center;
+        font-weight: bolder; color: #02ff0c;">Welcome
+                {{ user | capfirst }}
+            </span>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div style="text-align: left; color: #00fc58;
+            font-size: 20px; font-family: 'Glyphicons Halflings','cursive'; margin-left: 5%; padding: 5px">
+                    <span><b>Host:</b> {{ request.headers.host }}</span><br>
+                    <span><b>Connection:</b> {{ request.headers.connection }}</span><br>
+                    <span><b>User Active:</b> {{ request.user.is_active }} </span><br>
+                    <span><b>Session:</b> {{ request.session.session_key }}</span><br>
+                </div>
+            </div>
+            <div class="column">
+                <br>
+                <div style="text-align: left; color: #fc0000;
+                        font-size: 20px; font-family: 'Glyphicons Halflings','cursive'; margin-left: 10%; padding: 5px">
+                    <span><b>User-Agent:</b> {{ request.headers.user_agent }}</span><br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id=" content-main">
+        {% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}
+    </div>
+{% endblock %}

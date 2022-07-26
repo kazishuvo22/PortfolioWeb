@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 PortfolioWeb.pyproj
 PortfolioWeb.sln
+
+media
+media/

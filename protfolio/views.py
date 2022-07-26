@@ -5,7 +5,7 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse_lazy, reverse
 
 from .forms import ContactForm
-from .models import Contact, Skills, Education, WorkExperience
+from .models import Contact, Skills, Education, WorkExperience, About, General, Resume
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import logout, authenticate, login
 
@@ -13,6 +13,18 @@ from django.contrib.auth import logout, authenticate, login
 # Create your views here.
 def index(request):
     page = 'home'
+    general = General.objects.all().last()
+    request.session['name'] = general.name
+    request.session['phone'] = general.phone
+    request.session['email'] = general.email
+    request.session['address'] = general.address
+    request.session['facebook_link'] = general.facebook_link
+    request.session['github_link'] = general.github_link
+    request.session['whatsapp_link'] = general.whatsapp_link
+    request.session['skype_link'] = general.skype_link
+    request.session['linkedin_link'] = general.linkedin_link
+    request.session['youtube_link'] = general.youtube_link
+    request.session['map_embeded_link'] = general.map_embeded_link
     return render(request, page + ".html")
 
 
@@ -29,14 +41,20 @@ def about(request):
             'skills_count': skills.count()
         })
     context = {
-        'skills_all': skills_all
+        'skills_all': skills_all,
+        'about': About.objects.all().first(),
+        'work_ex_position': WorkExperience.objects.all().last()
     }
     return render(request, page + ".html", context)
 
 
 def resume(request):
     page = 'resume'
-    return render(request, page + ".html")
+    resume = Resume.objects.all().last()
+    context = {
+        'resume': resume
+    }
+    return render(request, page + ".html", context)
 
 
 def contact(request):
