@@ -1,11 +1,13 @@
 from datetime import datetime
 from django.contrib import messages, auth
 from django.contrib.messages.storage import session
+from django.db.migrations import serializer
+from django.http import JsonResponse
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse_lazy, reverse
 
 from .forms import ContactForm
-from .models import Contact, Skills, Education, WorkExperience, About, General, Resume
+from .models import Contact, Skills, Education, WorkExperience, About, General, Resume, Project
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import logout, authenticate, login
 
@@ -14,18 +16,24 @@ from django.contrib.auth import logout, authenticate, login
 def index(request):
     page = 'home'
     general = General.objects.all().last()
-    request.session['name'] = general.name
-    request.session['phone'] = general.phone
-    request.session['email'] = general.email
-    request.session['address'] = general.address
-    request.session['facebook_link'] = general.facebook_link
-    request.session['github_link'] = general.github_link
-    request.session['whatsapp_link'] = general.whatsapp_link
-    request.session['skype_link'] = general.skype_link
-    request.session['linkedin_link'] = general.linkedin_link
-    request.session['youtube_link'] = general.youtube_link
-    request.session['map_embeded_link'] = general.map_embeded_link
-    return render(request, page + ".html")
+
+    context = {
+        'general': general
+    }
+
+    if general:
+        request.session['name'] = general.name
+        request.session['phone'] = general.phone
+        request.session['email'] = general.email
+        request.session['address'] = general.address
+        request.session['facebook_link'] = general.facebook_link
+        request.session['github_link'] = general.github_link
+        request.session['whatsapp_link'] = general.whatsapp_link
+        request.session['skype_link'] = general.skype_link
+        request.session['linkedin_link'] = general.linkedin_link
+        request.session['youtube_link'] = general.youtube_link
+        request.session['map_embeded_link'] = general.map_embeded_link
+    return render(request, page + ".html", context)
 
 
 def about(request):
@@ -139,3 +147,11 @@ def workexperience(request):
         'exp_all': exp_all
     }
     return render(request, "workexperience.html", context)
+
+
+def projects(request):
+    project_all = Project.objects.all().order_by('-created_at')
+    context = {
+        'project_all': project_all
+    }
+    return render(request, 'projects.html', context)

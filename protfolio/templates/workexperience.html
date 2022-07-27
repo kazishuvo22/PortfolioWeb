@@ -7,7 +7,7 @@
                 <div class="section-title">
                     <h2>Work Experiences</h2>
                 </div>
-                <div class="card shadow p-2">
+                <div class="card p-2">
                     <div class="card-body">
                         <div class="timeline">
                             {% for exp in exp_all %}
@@ -24,7 +24,7 @@
                                                 {{ exp.end_date | date:"M Y" }}
                                             {% endif %}
                                         </div>
-                                        <div>
+                                        <div class="p-2" style="background: #f3f3f361; border:1px solid #00ff7f2b;">
                                             {% autoescape off %}
                                                 {{ exp.responsibilities }}
                                             {% endautoescape %}

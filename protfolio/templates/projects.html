@@ -1,0 +1,97 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section" id="project">
+                <div class="section-title">
+                    <h2>Projects</h2>
+                </div>
+                <div class="card p-2">
+                    <div class="card-body">
+                        {% for p in project_all %}
+                            <div class="row g-0 bg-light"
+                                 data-aos="fade-up"
+                                 data-aos-delay="5">
+                                <div class="col-md-3 mb-md-0 p-md-4">
+                                    <img src="{{ p.project_image.url }}" class="img-thumbnail w-100"
+                                         style="height: 200px"
+                                         alt="{{ p.name }}">
+                                    <div class="p-2 text-center">
+                                        <a target="_blank" href="{{ p.link }}" class="btn btn-outline-primary btn-sm">Project Link</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 p-4 ps-md-0">
+                                    <h5 class="mt-0">{{ p.name }}</h5>
+                                    <div class="text-muted">
+                                        <span><b>From:</b> {{ p.start_date }} </span> -
+                                        {% if p.end_date %}
+                                            <span><b>To: </b>{{ p.end_date }}</span>
+                                        {% else %}
+                                            <span><b>Present</b></span>
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        {% autoescape off %}
+                                            {{ p.detail | truncatechars:400 }}
+                                        {% endautoescape %}
+                                        <a href="{{ p.link }}" type="button" class="text-danger" data-bs-toggle="modal"
+                                           data-bs-target="#exampleModal{{ p.id }}">
+                                            <b>read more</b>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{ p.id }}" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel{{ p.id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel{{ p.id }}">{{ p.name }}'s
+                                                Details
+                                                <div class="text-muted small">
+                                                    <span><b>From:</b> {{ p.start_date }} </span> -
+                                                    {% if p.end_date %}
+                                                        <span><b>To: </b>{{ p.end_date }}</span>
+                                                    {% else %}
+                                                        <span><b>Present</b></span>
+                                                    {% endif %}
+                                                </div>
+                                            </h5>
+
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div><b>Subject:</b> {{ p.subject }}</div>
+                                            <br>
+                                            <div><b>Project Details:</b>
+                                                <div>
+                                                    {% autoescape off %}
+                                                        {{ p.detail }}
+                                                    {% endautoescape %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="p-2 text-center">
+                                                <a target="_blank" href="{{ p.link }}" class="btn btn-outline-primary btn-sm">Project
+                                                    Link</a>
+                                            </div>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

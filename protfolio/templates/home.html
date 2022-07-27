@@ -1,33 +1,41 @@
 {% extends "main.html" %}
 {% block content %}
-{% if messages %}
-            <ul class="messages" id="mydiv">
-                {% for message in messages %}
+    {% if messages %}
+        <ul class="messages" id="mydiv">
+            {% for message in messages %}
                 <div
                         {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
                 </div>
-                {% endfor %}
-            </ul>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+        <div class="hero-container" data-aos="fade-in">
+            <h1>{{ general.name }}</h1>
+            {% if general.i_am %}
+                <p>I'm <span class="typed" data-typed-items="{{ general.i_am }}"></span></p>
             {% endif %}
-<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="hero-container" data-aos="fade-in">
-      <h1>Kamruzzman Shuvo</h1>
-      <p>I'm <span class="typed" data-typed-items="Programmer, Developer, Researcher"></span></p>
-    </div>
-  </section>
+        </div>
+    </section>
 
-<script>
-    setTimeout(function() {
-    $('#mydiv').fadeOut('fast');
-}, 5000); //
+    <script>
+        setTimeout(function () {
+            $('#mydiv').fadeOut('fast');
+        }, 5000); //
 
-</script>
-<style>
-    #mydiv{
-    background: #00ba44;
-    color: #fff;
-    text-align: center;
-}
+    </script>
+    <style>
+        #mydiv {
+            background: #00ba44;
+            color: #fff;
+            text-align: center;
+        }
 
-</style>
+        #hero {
+            width: 100%;
+            height: 100vh;
+            background: url("{{ general.hero_image_field.url }}") top center;
+            background-size: cover;
+        }
+    </style>
 {% endblock %}

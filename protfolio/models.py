@@ -32,6 +32,9 @@ class General(models.Model):
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
+    i_am = models.CharField(max_length=300, verbose_name="Homepage I'm ___",
+                            help_text="Use comma per word; Example: Programmer, Developer, Researcher...etc; "
+                                      "Not more than 300 characters", blank=True, null=True)
     freelance = models.CharField(max_length=100, verbose_name="Freelance Type", choices=freelance_type)
     phone = models.CharField(max_length=20, verbose_name="Company official Mobile/ Phone number")
     email = models.EmailField(verbose_name="Enter Personal Email")
@@ -117,13 +120,14 @@ class Contact(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=256)
     subject = models.CharField(max_length=256)
-    Detail = HTMLField(verbose_name="Project Details", null=True, blank=True)
+    detail = HTMLField(verbose_name="Project Details", null=True, blank=True)
     project_image = models.FileField(verbose_name="Project Image", upload_to='project_image',
                                      help_text="Only PNG, JPG, JPEG format supported",
                                      validators=[FileExtensionValidator(
                                          allowed_extensions=['png', 'jpg', 'jpeg'])])
     start_date = models.DateField(verbose_name="Project Start Date", blank=True, null=True)
     end_date = models.DateField(verbose_name="Project End Date", blank=True, null=True)
+    link = models.CharField(max_length=300, verbose_name="Project link", null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):

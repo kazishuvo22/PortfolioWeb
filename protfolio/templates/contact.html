@@ -4,16 +4,16 @@
         <div class="container">
             <div class="section-title">
                 <h2>Contact</h2>
-                {% if messages %}
-                    &nbsp;
-                    <ul class="messages" id="mydiv">
-                        {% for message in messages %}
-                            <div
-                                    {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
-                            </div>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+{#                {% if messages %}#}
+{#                    &nbsp;#}
+{#                    <ul class="messages" id="mydiv">#}
+{#                        {% for message in messages %}#}
+{#                            <div#}
+{#                                    {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                {% endif %}#}
             </div>
             <div class="row" data-aos="fade-in">
                 <div class="col-lg-5 d-flex align-items-stretch">
@@ -40,6 +40,14 @@
 
                         <iframe src="
 
+
+
+
+
+
+
+
+
                                 {% if request.session.map_embeded_link %}{{ request.session.map_embeded_link }}{% else %}
                                 https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14607.60302001784!2d90.384685!3d23.75091825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1658835603039!5m2!1sen!2sbd{% endif %}
                         "
@@ -48,7 +56,7 @@
 
                 </div>
                 <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <form action="{% url 'contact' %}" method="post">
+                    <form action="{% url 'contact' %}" method="post" class="email-form">
                         {% csrf_token %}
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -68,9 +76,21 @@
                             <label for="name">Message</label>
                             <textarea class="form-control" name="message" rows="10" required></textarea>
                         </div>
-                        &nbsp;
+                        <div class="my-3">
+                            {% if messages %}
+                                &nbsp;
+                                <ul class="messages" id="mydiv">
+                                    {% for message in messages %}
+                                        <div
+                                                {% if message.tags %}
+                                                    class="{{ message.tags }} p-2" {% endif %}>{{ message }}
+                                        </div>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
                         <div class="text-center">
-                            <button class="btn btn-primary" type="submit">Send Message</button>
+                            <button type="submit">Send Message</button>
                         </div>
                     </form>
                 </div>
