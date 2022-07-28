@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'protfolio',
     'django_cleanup.apps.CleanupConfig',
     'tinymce',
-    'whitenoise'
 ]
 
 MIDDLEWARE = [
@@ -179,6 +178,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 # STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 # Activate Django-Heroku.
 django_heroku.settings(locals())
