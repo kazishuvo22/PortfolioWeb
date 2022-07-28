@@ -7,7 +7,7 @@
 
     <title>{{ request.session.name }}</title>
     {% load static %}
-    <meta content="" name="description">
+    <meta content="Kamruzzman Shuvo" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
@@ -43,9 +43,8 @@
 <!-- ======= Header ======= -->
 <header id="header">
     <div class="d-flex flex-column">
-
         <div class="profile">
-            <img src="{% static 'assets/img/profile-img.jpg' %}" alt="" class="img-fluid rounded-circle">
+            <img src="{{ request.session.photo }}" alt="Profile Photo" class="img-fluid rounded-circle">
             <h1 class="text-light"><a href="{% url 'home' %}">{{ request.session.name }}</a></h1>
             <div class="social-links mt-3 text-center">
                 <a href="callto:{{ request.session.whatsapp_link }}" target="_blank" class="twitter"><i
@@ -56,6 +55,11 @@
                 <a href="{{ request.session.skype_link }}" class="google-plus"><i class="bx bxl-skype"></i></a>
                 <a href="{{ request.session.linkedin_link }}" target="_blank" class="linkedin"><i
                         class="bx bxl-linkedin"></i></a>
+            </div>
+            <br>
+            <div class="text-center"><a href="{% url 'admin:index' %}" class="btn btn-outline-primary btn-sm"><i
+                    class="bx bx-check-shield"></i>
+                <span>LogIn</span></a>
             </div>
         </div>
 
@@ -76,14 +80,20 @@
                 <li><a href="{% url 'about' %}#skills"
                        class="nav-link scrollto {% if 'skills' in request.path %} active {% endif %}"><i
                         class="bx bx-code-alt"></i> <span>Skills</span></a></li>
-                <li><a href="{% url 'projects' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                <li><a href="{% url 'projects' %}"
+                       class="nav-link scrollto {% if 'projects' in request.path %} active {% endif %}"><i
+                        class="bx bx-book-content"></i>
                     <span>Projects</span></a></li>
+                <li><a href="{% url 'references' %}"
+                       class="nav-link scrollto {% if 'references' in request.path %} active {% endif %}"><i
+                        class="bx bx-group"></i>
+                    <span>References</span></a></li>
                 <li><a href="{% url 'resume' %}"
                        class="nav-link scrollto {% if 'resume' in request.path %} active {% endif %}"><i
                         class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-                <li><a href="{% url 'admin:index' %}" class="nav-link scrollto"><i class="bx bx-server"></i>
-                    <span>LogIn</span></a>
-                </li>
+                {#                <li><a href="{% url 'admin:index' %}" class="nav-link scrollto"><i class="bx bx-check-shield"></i>#}
+                {#                    <span>LogIn</span></a>#}
+                {#                </li>#}
                 <li><a href="{% url 'contact' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i>
                     <span>Contact</span></a></li>
             </ul>

@@ -1,0 +1,89 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section" id="project">
+                <div class="section-title">
+                    <h2>References</h2>
+                </div>
+                <div class="card p-2">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            {% for ref in ref_all %}
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row" data-aos="fade-up" data-aos-delay="5">
+                                                <div class="col-3">
+                                                    <img src="
+                                                            {% if ref.person_image %}{{ ref.person_image.url }}{% else %}{% static 'assets/img/person.png' %}{% endif %}"
+                                                         class="img-fluid" alt="Person Image">
+                                                </div>
+                                                <div class="col-9">
+                                                    <h4 class="text-black">{{ ref.person_name }}</h4>
+                                                    <h6 class="text-muted">{{ ref.person_designation }}</h6>
+                                                    <h6>{{ ref.company_name }}</h6>
+                                                    <h6><b>Email:</b> {{ ref.person_email }}</h6>
+                                                    <h6><b>Phone:</b> {{ ref.person_phone }}</h6>
+                                                    <br>
+                                                    {% if ref.quotes %}
+                                                        <h6 class="text-secondary"><b>Testimonial</b></h6>
+                                                        <div class="text-justify">
+                                                            {% autoescape off %}
+                                                                {{ ref.quotes | truncatechars:200 }}
+                                                            {% endautoescape %}
+                                                            <a href="{{ p.link }}" type="button" class="text-danger"
+                                                               data-bs-toggle="modal"
+                                                               data-bs-target="#exampleModal{{ ref.id }}">
+                                                                <b>read more</b>
+                                                            </a>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{ ref.id }}"
+                                     tabindex="-1"
+                                     aria-labelledby="exampleModalLabel{{ ref.id }}"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    id="exampleModalLabel{{ ref.id }}">{{ ref.person_name }}'s
+                                                    Testimonials
+                                                </h5>
+
+                                                <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-justify">
+                                                    {% autoescape off %}
+                                                        {{ ref.quotes }}
+                                                    {% endautoescape %}
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button"
+                                                        class="btn btn-outline-danger btn-sm"
+                                                        data-bs-dismiss="modal">
+                                                    Close
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

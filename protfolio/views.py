@@ -7,7 +7,7 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse_lazy, reverse
 
 from .forms import ContactForm
-from .models import Contact, Skills, Education, WorkExperience, About, General, Resume, Project
+from .models import Contact, Skills, Education, WorkExperience, About, General, Resume, Project, References
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import logout, authenticate, login
 
@@ -16,6 +16,8 @@ from django.contrib.auth import logout, authenticate, login
 def index(request):
     page = 'home'
     general = General.objects.all().last()
+    c_about = About.objects.get(general=general.id)
+    photo = c_about.about_body_image.url
 
     context = {
         'general': general
@@ -33,6 +35,7 @@ def index(request):
         request.session['linkedin_link'] = general.linkedin_link
         request.session['youtube_link'] = general.youtube_link
         request.session['map_embeded_link'] = general.map_embeded_link
+        request.session['photo'] = photo
     return render(request, page + ".html", context)
 
 
@@ -155,3 +158,12 @@ def projects(request):
         'project_all': project_all
     }
     return render(request, 'projects.html', context)
+
+
+def references(request):
+    ref_all = References.objects.all()
+
+    context = {
+        'ref_all': ref_all
+    }
+    return render(request, 'references.html', context)

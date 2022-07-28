@@ -164,7 +164,7 @@ class References(models.Model):
     person_image = models.FileField(verbose_name="Reference Person Image", upload_to='ref_person_image',
                                     help_text="Only PNG, JPG, JPEG format supported",
                                     validators=[FileExtensionValidator(
-                                        allowed_extensions=['png', 'jpg', 'jpeg'])])
+                                        allowed_extensions=['png', 'jpg', 'jpeg'])], null=True, blank=True)
     company_name = models.CharField(max_length=300, verbose_name="Company or Organization Name")
     person_email = models.EmailField(verbose_name="Reference Person's Email", blank=True, null=True)
     person_phone = models.CharField(max_length=300, verbose_name="Reference Person's Phone/Mobile Number", blank=True,
