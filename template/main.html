@@ -44,7 +44,8 @@
 <header id="header">
     <div class="d-flex flex-column">
         <div class="profile">
-            <img src="{{ request.session.photo }}" alt="Profile Photo" class="img-fluid rounded-circle">
+<!--            <img src="{{ request.session.photo }}" alt="Profile Photo" class="img-fluid rounded-circle">-->
+            <img src="{% static 'assets/img/foraml_pic.jpg' %}" alt="Profile Photo" class="img-fluid rounded-circle">
             <h1 class="text-light"><a href="{% url 'home' %}">{{ request.session.name }}</a></h1>
             <div class="social-links mt-3 text-center">
                 <a href="callto:{{ request.session.whatsapp_link }}" target="_blank" class="twitter"><i
