@@ -17,7 +17,8 @@
                         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
                             <h3>
                                 {% if work_ex_position.position %}
-                                    {{ work_ex_position.position }}
+                                    {{ work_ex_position.position }} <span
+                                                class="text-muted h6"> at {{ work_ex_position.company_name }}</span>
                                 {% else %}
                                     Please add a work experience!
                                 {% endif %}
