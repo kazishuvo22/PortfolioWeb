@@ -16,8 +16,9 @@ from django.contrib.auth import logout, authenticate, login
 def index(request):
     page = 'home'
     general = General.objects.all().last()
-    c_about = About.objects.get(general=general.id)
-    photo = c_about.about_body_image.url
+    c_about = About.objects.all().last()
+    if c_about:
+        photo = c_about.about_body_image.url
 
     context = {
         'general': general
