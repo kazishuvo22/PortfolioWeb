@@ -14,11 +14,12 @@ from django.contrib.auth import logout, authenticate, login
 
 # Create your views here.
 def index(request):
+    global photo
     page = 'home'
     general = General.objects.all().last()
     c_about = About.objects.all().last()
-    if c_about:
-        photo = c_about.about_body_image.url
+    if c_about.about_body_image:
+        request.session['photo'] = c_about.about_body_image.url
 
     context = {
         'general': general
@@ -36,7 +37,6 @@ def index(request):
         request.session['linkedin_link'] = general.linkedin_link
         request.session['youtube_link'] = general.youtube_link
         request.session['map_embeded_link'] = general.map_embeded_link
-        request.session['photo'] = photo
     return render(request, page + ".html", context)
 
 

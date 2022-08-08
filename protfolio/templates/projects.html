@@ -14,11 +14,17 @@
                                  data-aos="fade-up"
                                  data-aos-delay="5">
                                 <div class="col-md-3 mb-md-0 p-md-4">
-                                    <img src="{{ p.project_image.url }}" class="img-thumbnail w-100"
-                                         style="height: 200px"
-                                         alt="{{ p.name }}">
+                                    {% if p.project_image %}
+                                        <img src="{{ p.project_image.url }}" class="img-thumbnail w-100"
+                                             style="height: 200px" alt="{{ p.name }}">
+                                    {% else %}
+                                        <img src="{% static 'assets/img/project-avatar.jpg' %}"
+                                             class="img-thumbnail w-100"
+                                             style="height: 200px" alt="project image">
+                                    {% endif %}
                                     <div class="p-2 text-center">
-                                        <a target="_blank" href="{{ p.link }}" class="btn btn-outline-primary btn-sm">Project Link</a>
+                                        <a target="_blank" href="{{ p.link }}" class="btn btn-outline-primary btn-sm">Project
+                                            Link</a>
                                     </div>
                                 </div>
                                 <div class="col-md-9 p-4 ps-md-0">
@@ -77,10 +83,12 @@
                                         </div>
                                         <div class="modal-footer">
                                             <div class="p-2 text-center">
-                                                <a target="_blank" href="{{ p.link }}" class="btn btn-outline-primary btn-sm">Project
+                                                <a target="_blank" href="{{ p.link }}"
+                                                   class="btn btn-outline-primary btn-sm">Project
                                                     Link</a>
                                             </div>
-                                            <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">
+                                            <button type="button" class="btn btn-outline-danger btn-sm"
+                                                    data-bs-dismiss="modal">
                                                 Close
                                             </button>
                                         </div>

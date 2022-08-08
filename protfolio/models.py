@@ -31,7 +31,7 @@ class General(models.Model):
     hero_image_field = models.FileField(verbose_name="Home Background hero image", upload_to='homepageimage',
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
-                                            allowed_extensions=['png', 'jpg', 'jpeg'])])
+                                            allowed_extensions=['png', 'jpg', 'jpeg'])], null=True, blank=True)
     i_am = models.CharField(max_length=300, verbose_name="Homepage I'm ___",
                             help_text="Use comma per word; Example: Programmer, Developer, Researcher...etc; "
                                       "Not more than 300 characters", blank=True, null=True)
@@ -70,8 +70,9 @@ class General(models.Model):
         if ('request') in kwargs and self.last_author is None:
             request = kwargs.pop('request')
             self.last_author = request.user
-        new_image = compress(self.hero_image_field)
-        self.hero_image_field = new_image
+        if self.hero_image_field:
+            new_image = compress(self.hero_image_field)
+            self.hero_image_field = new_image
         super(General, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -91,7 +92,7 @@ class About(models.Model):
     about_body_image = models.FileField(verbose_name="About section body image", upload_to='aboutimage',
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
-                                            allowed_extensions=['png', 'jpg', 'jpeg'])])
+                                            allowed_extensions=['png', 'jpg', 'jpeg'])], null=True, blank=True)
     last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
     career_objectives = HTMLField(verbose_name="Career Objectives", null=True, blank=True)
     last_edited = models.DateTimeField(auto_now=True)
@@ -101,8 +102,9 @@ class About(models.Model):
         if ('request') in kwargs and self.last_author is None:
             request = kwargs.pop('request')
             self.last_author = request.user
-        new_image = compress(self.about_body_image)
-        self.about_body_image = new_image
+        if self.about_body_image:
+            new_image = compress(self.about_body_image)
+            self.about_body_image = new_image
         super(About, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -124,11 +126,17 @@ class Project(models.Model):
     project_image = models.FileField(verbose_name="Project Image", upload_to='project_image',
                                      help_text="Only PNG, JPG, JPEG format supported",
                                      validators=[FileExtensionValidator(
-                                         allowed_extensions=['png', 'jpg', 'jpeg'])])
+                                         allowed_extensions=['png', 'jpg', 'jpeg'])], null=True, blank=True)
     start_date = models.DateField(verbose_name="Project Start Date", blank=True, null=True)
     end_date = models.DateField(verbose_name="Project End Date", blank=True, null=True)
     link = models.CharField(max_length=300, verbose_name="Project link", null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if self.project_image:
+            new_image = compress(self.project_image)
+            self.project_image = new_image
+        super(Project, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -171,6 +179,12 @@ class References(models.Model):
                                     null=True)
     quotes = HTMLField(verbose_name="Reference Person's testimonials", null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if self.person_image:
+            new_image = compress(self.person_image)
+            self.person_image = new_image
+        super(References, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.person_name
@@ -215,7 +229,7 @@ class Resume(models.Model):
     resume = models.FileField(verbose_name="Upload Resume/ CV", upload_to='resume',
                               help_text="Only PDF format supported",
                               validators=[FileExtensionValidator(
-                                  allowed_extensions=['pdf', 'PDF'])])
+                                  allowed_extensions=['pdf', 'PDF'])], null=True, blank=True)
     uploaded_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):

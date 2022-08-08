@@ -31,5 +31,12 @@
             text-align: center;
         }
 
+        {% if general.hero_image_field %}
+            #hero {
+                background: url("{{ general.hero_image_field.url }}") top center !important;
+                background-size: cover!important;
+            }
+        {% endif %}
+
     </style>
 {% endblock %}

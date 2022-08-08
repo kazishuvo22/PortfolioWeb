@@ -11,14 +11,17 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-4" data-aos="fade-right">
-<!--                            <img src="{{ about.about_body_image.url }}" class="img-fluid" alt="">-->
-                            <img src="{% static 'assets/img/foraml_pic.jpg' %}" class="img-fluid" alt="">
+                            {% if  about.about_body_image %}
+                                <img src="{{ about.about_body_image.url }}" class="img-fluid" alt="">
+                            {% else %}
+                                <img src="{% static 'assets/img/foraml_pic.jpg' %}" class="img-fluid" alt="">
+                            {% endif %}
                         </div>
                         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
                             <h3>
                                 {% if work_ex_position.position %}
                                     {{ work_ex_position.position }} <span
-                                                class="text-muted h6"> at {{ work_ex_position.company_name }}</span>
+                                        class="text-muted h6"> at {{ work_ex_position.company_name }}</span>
                                 {% else %}
                                     Please add a work experience!
                                 {% endif %}
@@ -37,7 +40,8 @@
                                         <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong>
                                             <span>{{ about.general.phone }}</span>
                                         </li>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Address</strong> <span>{{ about.general.address }}</span>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Address</strong>
+                                            <span>{{ about.general.address }}</span>
                                         </li>
                                     </ul>
                                 </div>

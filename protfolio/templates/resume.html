@@ -10,8 +10,14 @@
                 <div class="card-body">
                     <div>
                         <div style="position:relative;padding-top:56.25%;">
-                            <iframe src="{{ resume.resume.url }}" frameborder="0" allowfullscreen
-                                    style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                            {% if resume.resume %}
+                                <iframe src="{{ resume.resume.url }}" frameborder="0" allowfullscreen
+                                        style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                            {% else %}
+                                <iframe src="{% static 'resume/CV_Kamruzzman_Shuvo.pdf' %}" frameborder="0"
+                                        allowfullscreen
+                                        style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
